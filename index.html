@@ -7,11 +7,13 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
         var
-            language = 'English';
-            code = getCode(language);
+            language = {};
+            language.local = 'English';
+            language.code = nativeLanguageNameToISOCode(language.local);
+            language.international = nativeLanguageNameToEnglishName(language.local);
             
         console.log('appInit');
-        console.log('language = ' + language + ', code = ' + code);
+        console.log('language (local) = ' + language.local + ', language (international) = ' + language.international + ', code = ' + language.code);
             
         function getLanguage()
         {
@@ -19,29 +21,30 @@
             (
                 function(lang)
                 {
-                    language = lang.value;
-                    code = getCode(lang.value);
+                    language.local = lang.value;
+                    language.code = nativeLanguageNameToISOCode(lang.value);
+                    language.international = nativeLanguageNameToEnglishName(lang.value);
                     
-                    console.log('Success getting language -- getPreferredLanguage() success callback called!');
-                    console.log('language = ' + language + ', code = ' + code);
                     console.log(lang);
+                    console.log('Success getting language -- getPreferredLanguage() success callback called!');
+                    console.log('language (native) = ' + language.local + ', language (international) = ' + language.international + ', code = ' + language.code);
                     
-                    i18n.setLng(code, function(t)
+                    i18n.setLng(language.code, function(t)
                     {
                         $('body').i18n();
                     });
                 },
                 function(error)
                 {
-                    console.log('Failed to get language -- getPreferredLanguage() error callback called!');
                     console.log(error);
+                    console.log('Failed to get language -- getPreferredLanguage() error callback called!');
                     
                     alert(i18n.t('messages.error'));
                 }
             );
         }
         
-        function getCode(lang)
+        function nativeLanguageNameToISOCode(lang)
         {
             var
                 dict = {},
@@ -91,11 +94,69 @@
             return code;
         }
         
+        function nativeLanguageNameToEnglishName(lang)
+        {
+            var
+                dict = {},
+                lang = lang.toLocaleLowerCase(),
+                code = lang.substring(0, 2);
+            
+            /**
+             * Fix certain languages' codes
+             * 
+             * JavaScript escapes: http://www.rishida.net/tools/conversion/
+             * More languages: http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+             */
+            dict["polski"] = "Polish";
+            dict["suomi"] = "Finnish";
+            dict["nederlands"] = "Dutch";
+            dict["magyar"] = "Hungarian";
+            dict["filipino"] = "Filipino";
+            dict["\u4E2D\u6587"] = "Chinese";
+            dict["latvie\u0161u"] = "Latvian";
+            dict["sloven\u010Dina"] = "Slovak";
+            dict["\u010De\u0161tina"] = "Czech";
+            dict["\u0E44\u0E17\u0E22"] = "Thai";
+            dict["t\u00FCrk\u00E7e"] = "Turkish";
+            dict["lietuvi\u0173"] = "Lithuanian";
+            dict["portugu\u00EAs"] = "Portuguese";
+            dict["\uD55C\uAD6D\uC5B4"] = "Korean";
+            dict["bahasa indonesia"] = "Indonesian";
+            dict["ti\u1EBFng vi\u1EC7t"] = "Vietnamese";
+            dict["norsk bokm\u00E5l"] = "Norwegian Bokmål";
+            dict["\u0641\u0627\u0631\u0633\u06CC"] = "Persian";
+            dict["\u05E2\u05D1\u05E8\u05D9\u05EA"] = "Modern Hebrew";
+            dict["\u0441\u0440\u043F\u0441\u043A\u0438"] = "Serbian";
+            dict["\u0627\u0644\u0639\u0631\u0628\u064A\u0629"]= "Arabic";
+            dict["\u0440\u0443\u0441\u0441\u043A\u0438\u0439"] = "Russian";
+            dict["\u03B5\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC"] = "Modern Greek";
+            dict["\u0431\u044A\u043B\u0433\u0430\u0440\u0441\u043A\u0438"] = "Bulgarian";
+            dict["\u0443\u043A\u0440\u0430\u0457\u043D\u0441\u044C\u043A\u0430"] = "Ukrainian";
+            
+            for(key in dict)
+            {
+                if(dict.hasOwnProperty(key))
+                {
+                    if(key === lang) code = dict[key];
+                }
+            }
+            
+            return code;
+        }
+        
         function displayLanguage()
         {
             getLanguage();
             
-            var message = i18n.t('messages.success', {language: language}) + ' [' + code + '].';
+            var message = i18n.t
+            (
+                'messages.success',
+                {
+                    code: language.code,
+                    local: language.local,
+                    language: language.international
+                }
+            );
 
             alert(message);
         }

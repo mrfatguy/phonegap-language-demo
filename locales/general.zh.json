@@ -5,7 +5,7 @@
     },
     "messages":
     {
-        "success": "当前的语言设置为： \"__language__\"",
+        "success": "当前语言：__language__（__local__）[__code__]",
         "error": "获得语言时出错！"
     }
 }

@@ -5,7 +5,7 @@
     },
     "messages":
     {
-        "success": "Diese Sprache ist eingestellt auf: \"__language__\"",
+        "success": "Aktuelle Sprache: __language__ (__local__) [__code__]",
         "error": "Fehler beim Abrufen der Sprache!"
     }
 }
