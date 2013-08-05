@@ -60,7 +60,7 @@ var ln =
         var
             dict = {},
             llang = lang.toLocaleLowerCase(),
-            code = lang.substring(0, 2);
+            code = lang.toLocaleLowerCase().substring(0, 2);
 
         /**
          * Fix certain languages' codes
@@ -135,7 +135,7 @@ var ln =
         dict["bahasa indonesia"] = "Indonesian";
         dict["\u65E5\u672C\u8A9E"] = "Japanese";
         dict["ti\u1EBFng vi\u1EC7t"] = "Vietnamese";
-        dict["norsk bokm\u00E5l"] = "Norwegian Bokmål";
+        dict["norsk bokm\u00E5l"] = "Norwegian Bokm\u00E5l";
         dict["\u0641\u0627\u0631\u0633\u06CC"] = "Persian";
         dict["\u05E2\u05D1\u05E8\u05D9\u05EA"] = "Modern Hebrew";
         dict["\u0441\u0440\u043F\u0441\u043A\u0438"] = "Serbian";
