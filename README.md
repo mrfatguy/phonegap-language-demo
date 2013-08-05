@@ -17,12 +17,14 @@ To use it in your own project, follow these steps:
 
 2. Add `deviceready` event handler and init `ln` in it:
 
-    document.addEventListener('deviceready', deviceReadyHandler, false);
+```js
+document.addEventListener('deviceready', deviceReadyHandler, false);
 
-    function deviceReadyHandler()
-    {
-        ln.init();
-    }
+function deviceReadyHandler()
+{
+    ln.init();
+}
+```
 
 3. You're done. Your application should detect current language upon startup and should self-translate to desired language (in proper locale file exists), using _i18next_ library.
 
