@@ -29,10 +29,6 @@
                     i18n.setLng(code, function(t)
                     {
                         $('body').i18n();
-                        
-                        var message = i18n.t('messages.success', {language: language}) + ' [' + code + '].';
-
-                        alert(message);
                     });
                 },
                 function(error)
@@ -47,21 +43,22 @@
         
         function getCode(lang)
         {
-            var dict = {};
+            var
+                dict = {},
+                lang = lang.toLocaleLowerCase(),
+                code = lang.substring(0, 2);
             
             //Fix certain languages' codes
-            dict["ba"] = "id"; //Bahasa Indonesia
-            dict["ch"] = "zh"; //Chinese
-            dict["če"] = "cs"; //Chinese
-            dict["po"] = "pl"; //Polish
-            
-            code = lang.toLocaleLowerCase().substring(0,2);
+            dict["bahasa indonesia"] = "id";
+            dict["čeština"] = "cs"; //Czech
+            dict["filipino"] = "fil"; //Filipino/Pilipino
+            dict["polski"] = "pl"; //Polish
             
             for(key in dict)
             {
                 if(dict.hasOwnProperty(key))
                 {
-                    if(key === code) code = dict[key];
+                    if(key === lang) code = dict[key];
                 }
             }
             
