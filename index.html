@@ -29,6 +29,10 @@
                     i18n.setLng(code, function(t)
                     {
                         $('body').i18n();
+                        
+                        var message = i18n.t('messages.success', {language: language}) + ' [' + code + '].';
+
+                        alert(message);
                     });
                 },
                 function(error)
@@ -65,6 +69,8 @@
         
         function displayLanguage()
         {
+            getLanguage();
+            
             var message = i18n.t('messages.success', {language: language}) + ' [' + code + '].';
 
             alert(message);
@@ -88,6 +94,6 @@
     </script>
   </head>
   <body>
-    <button onclick="displayLanguage()" data-i18n="buttons.language">buttons.language</button>
+    <button onclick="getLanguage()" data-i18n="buttons.language">buttons.language</button>
   </body>
 </html>
