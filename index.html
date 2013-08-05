@@ -50,6 +50,7 @@
             var dict = {};
             
             //Fix certain languages' codes
+            dict["ba"] = "id"; //Bahasa Indonesia
             dict["ch"] = "zh"; //Chinese
             dict["če"] = "cs"; //Chinese
             dict["po"] = "pl"; //Polish
@@ -76,21 +77,27 @@
             alert(message);
         }
         
-        /**
-         * i18next -- http://i18next.com/
-         */
-        i18n.init
-        ({
-            lng: code,
-            ns: 'general',
-            useCookie: false,
-            resGetPath: 'locales/__ns__.__lng__.json'
-        }, function()
+        function deviceReadyHandler()
         {
-            $('body').i18n();
-        });
+            /**
+             * i18next -- http://i18next.com/
+             */
+            i18n.init
+            ({
+                lng: code,
+                ns: 'general',
+                useCookie: false,
+                fallbackLng: 'en',
+                resGetPath: 'locales/__ns__.__lng__.json'
+            }, function()
+            {
+                $('body').i18n();
+            });
+
+            getLanguage();
+        }
         
-        getLanguage();
+        document.addEventListener('deviceready', deviceReadyHandler, false);
     </script>
   </head>
   <body>
