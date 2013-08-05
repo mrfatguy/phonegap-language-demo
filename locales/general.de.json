@@ -1,0 +1,11 @@
+{
+    "buttons":
+    {
+        "language": "Sprache"
+    },
+    "messages":
+    {
+        "success": "Diese Sprache ist eingestellt auf: \"__language__\".",
+        "error": "Fehler beim Abrufen der Sprache!"
+    }
+}

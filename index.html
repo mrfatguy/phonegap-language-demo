@@ -1,26 +1,54 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>getPreferredLanguage Example</title>
+    <title>Multilanguage PhoneGap Application Example</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/i18next.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
-
-    function checkLanguage()
-    {
-      navigator.globalization.getPreferredLanguage
-      (
-        function(language)
+        var
+            code = 'pl',
+            language = 'English';
+        
+        function getLanguage()
         {
-            console.log(language);
-            
-            alert('language: ' + language.value + '\n');
-        },
-        function(){alert('Error getting language\n');}
-      );
-    }
+          navigator.globalization.getPreferredLanguage
+          (
+            function(lang)
+            {
+                console.log(lang);
+                
+                language = lang
+            },
+            function(){alert(i18n.t('messages.error'));}
+          );
+        }
+        
+        function displayLanguage()
+        {
+            var message = i18n.t('messages.success', {language: language});
+
+            alert(message);
+        }
+        
+        getLanguage();
+        
+        /**
+         * i18next -- http://i18next.com/
+         */
+        i18n.init
+        ({
+            lng: code,
+            ns: 'general',
+            useCookie: false,
+            resGetPath: 'locales/__ns__.__lng__.json'
+        }, function()
+        {
+            $('body').i18n();
+        });
     </script>
   </head>
   <body>
-    <button onclick="checkLanguage()">Click for language</button>
+    <button onclick="displayLanguage()" data-i18n="buttons.language">buttons.language</button>
   </body>
 </html>
