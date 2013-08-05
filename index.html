@@ -4,7 +4,7 @@
     <title>Multilanguage PhoneGap Application Example</title>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/i18next.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
         var
             language = {};
@@ -98,8 +98,7 @@
         {
             var
                 dict = {},
-                lang = lang.toLocaleLowerCase(),
-                code = lang.substring(0, 2);
+                llang = lang.toLocaleLowerCase();
             
             /**
              * Fix certain languages' codes
@@ -137,11 +136,11 @@
             {
                 if(dict.hasOwnProperty(key))
                 {
-                    if(key === lang) code = dict[key];
+                    if(key === llang) lang = dict[key];
                 }
             }
             
-            return code;
+            return lang;
         }
         
         function displayLanguage()
@@ -168,7 +167,7 @@
              */
             i18n.init
             ({
-                lng: code,
+                lng: language.code,
                 ns: 'general',
                 useCookie: false,
                 fallbackLng: 'en',
