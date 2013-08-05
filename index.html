@@ -7,31 +7,68 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
         var
-            code = 'pl',
             language = 'English';
-        
+            code = getCode(language);
+            
+        console.log('appInit');
+        console.log('language = ' + language + ', code = ' + code);
+            
         function getLanguage()
         {
-          navigator.globalization.getPreferredLanguage
-          (
-            function(lang)
+            navigator.globalization.getPreferredLanguage
+            (
+                function(lang)
+                {
+                    language = lang.value;
+                    code = getCode(lang.value);
+                    
+                    console.log('Success getting language -- getPreferredLanguage() success callback called!');
+                    console.log('language = ' + language + ', code = ' + code);
+                    console.log(lang);
+                    
+                    i18n.setLng(code, function(t)
+                    {
+                        $('body').i18n();
+                    });
+                },
+                function(error)
+                {
+                    console.log('Failed to get language -- getPreferredLanguage() error callback called!');
+                    console.log(error);
+                    
+                    alert(i18n.t('messages.error'));
+                }
+            );
+        }
+        
+        function getCode(lang)
+        {
+            var dict = {};
+            
+            //Fix certain languages' codes
+            dict["ch"] = "zh"; //Chinese
+            dict["če"] = "cs"; //Chinese
+            dict["po"] = "pl"; //Polish
+            
+            code = lang.toLocaleLowerCase().substring(0,2);
+            
+            for(key in dict)
             {
-                console.log(lang);
-                
-                language = lang
-            },
-            function(){alert(i18n.t('messages.error'));}
-          );
+                if(dict.hasOwnProperty(key))
+                {
+                    if(key === code) code = dict[key];
+                }
+            }
+            
+            return code;
         }
         
         function displayLanguage()
         {
-            var message = i18n.t('messages.success', {language: language});
+            var message = i18n.t('messages.success', {language: language}) + ' [' + code + '].';
 
             alert(message);
         }
-        
-        getLanguage();
         
         /**
          * i18next -- http://i18next.com/
@@ -46,6 +83,8 @@
         {
             $('body').i18n();
         });
+        
+        getLanguage();
     </script>
   </head>
   <body>

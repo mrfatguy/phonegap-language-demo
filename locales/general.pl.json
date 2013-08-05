@@ -5,7 +5,7 @@
     },
     "messages":
     {
-        "success": "Aktualny język jest ustawiony na: \"__language__\".",
+        "success": "Aktualny język jest ustawiony na: \"__language__\"",
         "error": "Błąd przy odczytywaniu języka!"
     }
 }

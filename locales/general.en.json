@@ -5,7 +5,7 @@
     },
     "messages":
     {
-        "success": "Current language is set to: \"__language__\".",
+        "success": "Current language is set to: \"__language__\"",
         "error": "Error getting language!"
     }
 }
