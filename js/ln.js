@@ -34,9 +34,12 @@ var ln =
         (
             function(lang)
             {
+                //For debug purpose only!
+                //var lang = {value: '\u4E2D\u6587'};
+                
                 ln.language.local = lang.value;
-                ln.language.code = nativeLanguageNameToISOCode(lang.value);
-                ln.language.international = nativeLanguageNameToEnglishName(lang.value);
+                ln.language.code = ln.nativeLanguageNameToISOCode(lang.value);
+                ln.language.international = ln.nativeLanguageNameToEnglishName(lang.value);
 
                 i18n.setLng(ln.language.code, function(t)
                 {
@@ -56,7 +59,7 @@ var ln =
     {
         var
             dict = {},
-            lang = lang.toLocaleLowerCase(),
+            llang = lang.toLocaleLowerCase(),
             code = lang.substring(0, 2);
 
         /**
@@ -96,7 +99,7 @@ var ln =
         {
             if(dict.hasOwnProperty(key))
             {
-                if(key === lang) code = dict[key];
+                if(key === llang) code = dict[key];
             }
         }
 
@@ -107,7 +110,7 @@ var ln =
     {
         var
             dict = {},
-            lang = lang.toLocaleLowerCase();
+            llang = lang.toLocaleLowerCase();
 
         /**
          * Fix certain languages' codes
@@ -146,7 +149,7 @@ var ln =
         {
             if(dict.hasOwnProperty(key))
             {
-                if(key === lang) lang = dict[key];
+                if(key === llang) lang = dict[key];
             }
         }
 
