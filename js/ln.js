@@ -56,7 +56,7 @@ var ln =
     {
         var
             dict = {},
-            llang = lang.toLocaleLowerCase(),
+            lang = lang.toLocaleLowerCase(),
             code = lang.substring(0, 2);
 
         /**
@@ -96,7 +96,7 @@ var ln =
         {
             if(dict.hasOwnProperty(key))
             {
-                if(key === llang) code = dict[key];
+                if(key === lang) code = dict[key];
             }
         }
 
@@ -107,7 +107,7 @@ var ln =
     {
         var
             dict = {},
-            llang = lang.toLocaleLowerCase();
+            lang = lang.toLocaleLowerCase();
 
         /**
          * Fix certain languages' codes
@@ -146,7 +146,7 @@ var ln =
         {
             if(dict.hasOwnProperty(key))
             {
-                if(key === llang) lang = dict[key];
+                if(key === lang) lang = dict[key];
             }
         }
 
