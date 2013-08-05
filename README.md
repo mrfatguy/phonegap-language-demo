@@ -1,5 +1,5 @@
-PhoneGap Demo Battery
-=====================
+PhoneGap Demo Language
+======================
 Trying to figure out, why PhoneGap 2.9.0 / PhoneGap Build isn't able to read language settings?
 
 Problem tested on four different devices and Android versions:
