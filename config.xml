@@ -23,19 +23,17 @@
 		<gap:platform name="symbian.wrt" />
 		<gap:platform name="blackberry" project="widgets" />
 	</gap:platforms>
-	
-    <preference name="phonegap-version"     value="2.9.0" />
-    <preference name="orientation"          value="default" />
-    <preference name="target-device"        value="universal" />
-    <preference name="fullscreen"           value="false" />
+
+	<preference name="phonegap-version"     value="2.9.0" />
+	<preference name="orientation"          value="default" />
+	<preference name="target-device"        value="universal" />
+	<preference name="fullscreen"           value="false" />
 	<preference name="autorotate"           value="false" readonly="true" />
 	<preference name="AutoHideSplashScreen" value="false" />
 	<preference name="OpenAllWhitelistURLsInWebView" value="No" />
 
 	<icon src="icon.png" gap:role="default" />
 
-    <gap:splash src="splash.png" />
-    
 	<feature name="http://api.phonegap.com/1.0/network"/>
     
 </widget>
