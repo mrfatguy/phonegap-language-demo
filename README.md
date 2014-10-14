@@ -1,4 +1,4 @@
-# PhoneGap Multi-language Demo Application
+# PhoneGap Language Demo Application
 
 Example of PhoneGap 2.9.0 / PhoneGap Build multi-language application, using [i18next](http://i18next.com/) library.
 
