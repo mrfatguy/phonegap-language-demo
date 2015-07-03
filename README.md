@@ -2,6 +2,8 @@
 
 Example of PhoneGap 2.9.0 / PhoneGap Build multi-language application, using [i18next](http://i18next.com/) library.
 
+**This project ABANDONED, because it was meant to be test project only! There is no wiki, issues and no support. There will be no future updates. Unfortunately, you're on your own.**
+
 ## Notice
 
 This project is written using [PhoneGap 2.9.0 API](http://docs.phonegap.com/en/2.9.0/index.html), while Ripple Emulator has very old [2.0.0 API](http://docs.phonegap.com/en/2.0.0/index.html) behind, so it _will not work in desktop computer browser_, even if you run it through Ripple. You have to compile it and test it on mobile device. When running in browser, under Ripple, it fails on `navigator.globalization.getPreferredLanguage` function, which is `undefined`, because in [PhoneGap 2.0.0 API](http://docs.phonegap.com/en/2.0.0/index.html#Globalization) (used by Ripple), there is not such object like `Globalization`. It was [introduced in API version 2.2.0](http://docs.phonegap.com/en/2.2.0/cordova_globalization_globalization.md.html#globalization.getPreferredLanguage), so Ripple would have to be updated (by its authors or manually) to at least this version, so you could run this demo in a browser.
@@ -52,3 +54,5 @@ Tested on four different devices and Android versions:
 Seems fine on all of these platforms and devices.
 
 Tested **only** as compiled through [PhoneGap Build](http://build.phonegap.com). Never compiled locally or tested after such build.
+
+**This project ABANDONED, because it was meant to be test project only! There is no wiki, issues and no support. There will be no future updates. Unfortunately, you're on your own.**
